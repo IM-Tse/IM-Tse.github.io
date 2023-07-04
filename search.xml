@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hexo使用</title>
+    <url>/2019/12/28/Hexo%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><ol>
+<li>安装最新版npm</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install npm@latest -g</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>安装n</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g n</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>使用n安装node</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">n latest</span><br><span class="line">n stable</span><br><span class="line">n lts</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用Hexo建站"><a href="#使用Hexo建站" class="headerlink" title="使用Hexo建站"></a>使用Hexo建站</h2><h3 id="在建站博客根目录中（-x2F-hexo）中初始化"><a href="#在建站博客根目录中（-x2F-hexo）中初始化" class="headerlink" title="在建站博客根目录中（.&#x2F;hexo）中初始化"></a>在建站博客根目录中（.&#x2F;hexo）中初始化</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init hexo</span><br><span class="line"><span class="built_in">cd</span> hexo</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装next主题-仓库地址"><a href="#安装next主题-仓库地址" class="headerlink" title="安装next主题(仓库地址)"></a>安装next主题(<a href="https://github.com/theme-next/hexo-theme-next">仓库地址</a>)</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>在博客根目录下的_config.yml中配置</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装看板娘"><a href="#安装看板娘" class="headerlink" title="安装看板娘"></a>安装看板娘</h3><ol>
+<li>安装live2d模块</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-helper-live2d</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>下载模型（<a href="https://github.com/xiazeyu/live2d-widget-models.git">仓库地址</a>）</p>
+<p> 在您博客根目录下创建一个 live2d_models 文件夹，将模型资源文件夹(如：live2d-widget-model-koharu)放入此文件夹中</p>
+</li>
+<li><p>在博客根目录下的_config.yml文件进行配置</p>
+</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Live2D</span></span><br><span class="line"><span class="comment">## https://github.com/EYHN/hexo-helper-live2d</span></span><br><span class="line"><span class="attr">live2d:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># enable: false</span></span><br><span class="line">  <span class="attr">pluginRootPath:</span> <span class="string">live2dw/</span> <span class="comment"># Root path of plugin to be on the site (Relative)</span></span><br><span class="line">  <span class="attr">pluginJsPath:</span> <span class="string">lib/</span> <span class="comment"># JavaScript path related to plugin&#x27;s root (Relative)</span></span><br><span class="line">  <span class="attr">pluginModelPath:</span> <span class="string">assets/</span> <span class="comment"># Relative model path related to plugin&#x27;s root (Relative)</span></span><br><span class="line">  <span class="attr">scriptFrom:</span> <span class="string">local</span> <span class="comment"># Default</span></span><br><span class="line">  <span class="comment"># scriptFrom: jsdelivr # jsdelivr CDN</span></span><br><span class="line">  <span class="comment"># scriptFrom: unpkg # unpkg CDN</span></span><br><span class="line">  <span class="comment"># scriptFrom: https://cdn.jsdelivr.net/npm/live2d-widget@3.x/lib/L2Dwidget.min.js # Your custom url</span></span><br><span class="line">  <span class="attr">tagMode:</span> <span class="literal">false</span> <span class="comment"># Whether only to replace live2d tag instead of inject to all pages</span></span><br><span class="line">  <span class="attr">log:</span> <span class="literal">false</span> <span class="comment"># Whether to show logs in console</span></span><br><span class="line">  <span class="attr">model:</span></span><br><span class="line">    <span class="attr">use:</span> <span class="string">live2d-widget-model-koharu</span> <span class="comment"># npm-module package name</span></span><br><span class="line">    <span class="comment"># use: wanko # folder name in (hexo base dir)/live2d_models/</span></span><br><span class="line">    <span class="comment"># use: ./wives/wanko # folder path relative to hexo base dir</span></span><br><span class="line">    <span class="comment"># use: https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json # Your custom url</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>建站</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>按~键无反应的问题</title>
+    <url>/2023/06/12/%E6%8C%89-%E9%94%AE%E6%97%A0%E5%8F%8D%E5%BA%94%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>Snipaste或者其他软件设置了快捷键</p>
+]]></content>
+      <categories>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Solr的安装与使用</title>
+    <url>/2019/12/27/Solr%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="Linux下Solr的下载和安装"><a href="#Linux下Solr的下载和安装" class="headerlink" title="Linux下Solr的下载和安装"></a>Linux下Solr的下载和安装</h2><ul>
+<li><p>访问Apache <a href="http://lucene.apache.org/solr/downloads.html">Solr</a>的主页，下载8.3.1版本Binary releases: <a href="https://www.apache.org/dyn/closer.lua/lucene/solr/8.3.1/solr-8.3.1.tgz">solr-8.3.1.tgz</a></p>
+</li>
+<li><p>进入下载文件目录对文件进行解压，解压路径&#x2F;usr&#x2F;local可以根据自己修改，以下操作请确保你拥有root权限</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo tar -zxvf solr-8.3.1.tgz -C /usr/local</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>为solr命令添加软链</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo ln -s /usr/local/solr-8.3.1/bin/solr /usr/bin</span><br><span class="line">sudo ln -s /usr/local/solr-8.3.1/bin/post /usr/bin</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动Solr</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">solr start</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>访问<a href="http://localhost:8983/solr/">http://localhost:8983/solr/</a>进入控制台界面，安装完成</li>
+</ul>
+<p><img src="/images/Solr%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/1.png" alt="Solr 服务控制台界面"></p>
+<h2 id="使用Solr"><a href="#使用Solr" class="headerlink" title="使用Solr"></a>使用Solr</h2><ol>
+<li><p>使用Solr创建一个Core</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">solr create -c core_test</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改Core的配置文件</p>
+<ul>
+<li><p>修改solrconfig.xml文件</p>
+  <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /usr/local/solr-8.3.1/server/solr/core_test/conf/solrconfig.xml</span><br></pre></td></tr></table></figure>
+
+<p>  在大概810行左右修改，upprefix指在使用solrj添加文档索引时，如果field没有在managed-schema文件中定义，则给这个field加一个attr_的前缀（前缀可自定义）</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">requestHandler</span> <span class="attr">name</span>=<span class="string">&quot;/update/extract&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">startup</span>=<span class="string">&quot;lazy&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">class</span>=<span class="string">&quot;solr.extraction.ExtractingRequestHandler&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">lst</span> <span class="attr">name</span>=<span class="string">&quot;defaults&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">&quot;lowernames&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">str</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">&quot;fmap.content&quot;</span>&gt;</span>text<span class="tag">&lt;/<span class="name">str</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">&quot;upprefix&quot;</span>&gt;</span>attr_<span class="tag">&lt;/<span class="name">str</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">&quot;captureAttr&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">str</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">lst</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">requestHandler</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>  在开头大概87行左右添加以下内容（位置不强制，可以在前面），导入项目所需要的jar包</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">lib</span> <span class="attr">dir</span>=<span class="string">&quot;$&#123;solr.install.dir:../../../..&#125;/contrib/analysis-extras/lucene-libs/&quot;</span> <span class="attr">regex</span>=<span class="string">&quot;lucene-analyzers-smartcn.*\.jar&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">lib</span> <span class="attr">dir</span>=<span class="string">&quot;$&#123;solr.install.dir:../../..&#125;/contrib/extraction/lib&quot;</span> <span class="attr">regex</span>=<span class="string">&quot;.*\.jar&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改managed-schema文件</p>
+  <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /usr/local/solr-8.3.1/server/solr/core_test/conf/managed-schema</span><br></pre></td></tr></table></figure>
+
+<p>  添加索引字段</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;text&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text_cn&quot;</span> <span class="attr">indexed</span>=<span class="string">&quot;true&quot;</span> <span class="attr">stored</span>=<span class="string">&quot;true&quot;</span> <span class="attr">omitNorms</span> =<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;path&quot;</span> <span class="attr">type</span>=<span class="string">&quot;string&quot;</span> <span class="attr">indexed</span>=<span class="string">&quot;true&quot;</span> <span class="attr">stored</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;filename&quot;</span> <span class="attr">type</span>=<span class="string">&quot;plong&quot;</span> <span class="attr">indexed</span>=<span class="string">&quot;true&quot;</span> <span class="attr">stored</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;fileLastModified&quot;</span> <span class="attr">type</span>=<span class="string">&quot;pdate&quot;</span> <span class="attr">indexed</span>=<span class="string">&quot;true&quot;</span> <span class="attr">stored</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>  在大概821行左右添加以下内容，配置Solr自带的中文分词</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--Chinese--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldType</span> <span class="attr">name</span>=<span class="string">&quot;text_cn&quot;</span> <span class="attr">class</span>=<span class="string">&quot;solr.TextField&quot;</span> <span class="attr">positionIncrementGap</span>=<span class="string">&quot;100&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tokenizer</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.lucene.analysis.cn.smart.HMMChineseTokenizerFactory&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">analyzer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">&quot;query&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tokenizer</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.lucene.analysis.cn.smart.HMMChineseTokenizerFactory&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">analyzer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldType</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  配置IKAnalyzer的中文分词，将ik-analyzer-solr5-5.x.jar复制到contrib&#x2F;extraction&#x2F;lib目录下</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- IK分词 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldType</span> <span class="attr">name</span>=<span class="string">&quot;text_ik&quot;</span> <span class="attr">class</span>=<span class="string">&quot;solr.TextField&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tokenizer</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.lucene.analysis.ik.IKTokenizerFactory&quot;</span> <span class="attr">useSmart</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">analyzer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">&quot;query&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tokenizer</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.lucene.analysis.ik.IKTokenizerFactory&quot;</span> <span class="attr">useSmart</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">analyzer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldType</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  配置拼音分词，将pinyin4j-2.5.0.jar、pinyinAnalyzer.jar这两个jar包复制到contrib&#x2F;extraction&#x2F;lib目录下</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- pingyin --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldType</span> <span class="attr">name</span>=<span class="string">&quot;text_pinyin&quot;</span> <span class="attr">class</span>=<span class="string">&quot;solr.TextField&quot;</span> <span class="attr">positionIncrementGap</span>=<span class="string">&quot;0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tokenizer</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.lucene.analysis.ik.IKTokenizerFactory&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;com.shentong.search.analyzers.PinyinTransformTokenFilterFactory&quot;</span> <span class="attr">minTermLenght</span>=<span class="string">&quot;2&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;com.shentong.search.analyzers.PinyinNGramTokenFilterFactory&quot;</span> <span class="attr">maxGram</span>=<span class="string">&quot;20&quot;</span> <span class="attr">minGram</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">analyzer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">&quot;query&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tokenizer</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.lucene.analysis.ik.IKTokenizerFactory&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;com.shentong.search.analyzers.PinyinTransformTokenFilterFactory&quot;</span> <span class="attr">minTermLenght</span>=<span class="string">&quot;2&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;com.shentong.search.analyzers.PinyinNGramTokenFilterFactory&quot;</span> <span class="attr">maxGram</span>=<span class="string">&quot;20&quot;</span> <span class="attr">minGram</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">analyzer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldType</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>重启Solr服务使配置生效</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">solr restart</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试中文分词功能</p>
+<p> 访问<a href="http://localhost:8983/solr/">http://localhost:8983/solr/</a>进入控制台界面，选择刚刚创建的Core，点击Analysis</p>
+ 
+<p> <img src="/images/Solr%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/2.png" alt="测试中文分词功能"></p>
+</li>
+</ol>
+<h2 id="在Maven项目中使用"><a href="#在Maven项目中使用" class="headerlink" title="在Maven项目中使用"></a>在Maven项目中使用</h2><ol>
+<li><p>在pom文件中添加依赖</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.solr<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>solr-solrj<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>8.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>后台Java代码向服务器插入索引</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 向Solr服务器添加文件索引</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> filePath 文件路径</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fileName 文件名称</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFile</span><span class="params">(String filePath, String fileName)</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 创建链接对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">solrUrl</span> <span class="operator">=</span> <span class="string">&quot;http://localhost:8983/solr/core_test&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">HttpSolrClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HttpSolrClient</span>.Builder(solrUrl)</span><br><span class="line">            .withConnectionTimeout(<span class="number">10000</span>)</span><br><span class="line">            .withSocketTimeout(<span class="number">60000</span>)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="comment">// 2. 获取文件类型</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">contentType</span> <span class="operator">=</span> getFileContentType(fileName);</span><br><span class="line">    <span class="comment">// 3. 创建一个文档对象</span></span><br><span class="line">    <span class="type">ContentStreamUpdateRequest</span> <span class="variable">up</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ContentStreamUpdateRequest</span>(<span class="string">&quot;/update/extract&quot;</span>);</span><br><span class="line">    <span class="comment">// 4. 向文档中添加域与对应的值</span></span><br><span class="line">    <span class="comment">// 添加文件</span></span><br><span class="line">    up.addFile(<span class="keyword">new</span> <span class="title class_">File</span>(filePath), contentType);</span><br><span class="line">    <span class="comment">// 将文件名称作为id域</span></span><br><span class="line">    up.setParam(<span class="string">&quot;literal.id&quot;</span>, fileName);</span><br><span class="line">    <span class="comment">// 添加文件路径映射到path域</span></span><br><span class="line">    up.setParam(<span class="string">&quot;literal.path&quot;</span>, filePath);</span><br><span class="line">    <span class="comment">// 添加文件名称映射到filename域</span></span><br><span class="line">    up.setParam(<span class="string">&quot;literal.fileName&quot;</span>, fileName);</span><br><span class="line">    <span class="comment">// 添加文件的内容映射到text域</span></span><br><span class="line">    up.setParam(<span class="string">&quot;fmap.content&quot;</span>, <span class="string">&quot;text&quot;</span>);</span><br><span class="line">    up.setAction(AbstractUpdateRequest.ACTION.COMMIT, <span class="literal">true</span>, <span class="literal">true</span>);</span><br><span class="line">    <span class="comment">// 5. 将文档写入索引库中</span></span><br><span class="line">    client.request(up);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 想索引库中查询</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> conten 查询内容</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> SolrDocumentList <span class="title function_">selectFile</span><span class="params">(String content)</span> <span class="keyword">throws</span> IOException, SolrServerException &#123;</span><br><span class="line">    <span class="comment">// 1. 创建连接对象</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">solrUrl</span> <span class="operator">=</span> <span class="string">&quot;http://localhost:8983/solr/core_test/&quot;</span>;</span><br><span class="line">    <span class="type">HttpSolrClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HttpSolrClient</span>.Builder(solrUrl)</span><br><span class="line">        .withConnectionTimeout(<span class="number">10000</span>)</span><br><span class="line">        .withSocketTimeout(<span class="number">60000</span>)</span><br><span class="line">        .build();</span><br><span class="line">    <span class="comment">// 2. 创建查询对象</span></span><br><span class="line">    <span class="type">SolrQuery</span> <span class="variable">solrQuery</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SolrQuery</span>();</span><br><span class="line">    <span class="comment">// 3. 设置查询条件</span></span><br><span class="line">    solrQuery.set(<span class="string">&quot;q&quot;</span>, <span class="string">&quot;text:&quot;</span> + content);</span><br><span class="line">    <span class="comment">// 4. 查询</span></span><br><span class="line">    <span class="type">QueryResponse</span> <span class="variable">query</span> <span class="operator">=</span> client.query(solrQuery);</span><br><span class="line">    <span class="comment">// 5. 获得查询结果</span></span><br><span class="line">    <span class="type">SolrDocumentList</span> <span class="variable">results</span> <span class="operator">=</span> query.getResults();</span><br><span class="line">    <span class="keyword">return</span> results;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> id </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteById</span><span class="params">(String id)</span> <span class="keyword">throws</span> IOException, SolrServerException &#123;</span><br><span class="line">    <span class="comment">// 1. 创建链接</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">solrUrl</span> <span class="operator">=</span> <span class="string">&quot;http://localhost:8983/solr/core_test&quot;</span>;</span><br><span class="line">    <span class="type">HttpSolrClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HttpSolrClient</span>.Builder(solrUrl)</span><br><span class="line">        .withConnectionTimeout(<span class="number">10000</span>)</span><br><span class="line">        .withSocketTimeout(<span class="number">60000</span>)</span><br><span class="line">        .build();</span><br><span class="line">    <span class="comment">// 2. 按照文档id删除</span></span><br><span class="line">    client.deleteById(id);</span><br><span class="line">    <span class="comment">// 3. 提交</span></span><br><span class="line">    client.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>getFileContentType()函数</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getFileContentType</span><span class="params">(String filename)</span></span><br><span class="line">&#123;</span><br><span class="line">	String contentType=<span class="literal">null</span>;</span><br><span class="line">	String prefix=filename.substring(filename.lastIndexOf(<span class="string">&quot;.&quot;</span>)+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span>(prefix.equals(<span class="string">&quot;xlsx&quot;</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		contentType=<span class="string">&quot;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&quot;</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(prefix.equals(<span class="string">&quot;pdf&quot;</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		contentType=<span class="string">&quot;application/pdf&quot;</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(prefix.equals(<span class="string">&quot;doc&quot;</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		contentType=<span class="string">&quot;application/msword&quot;</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(prefix.equals(<span class="string">&quot;txt&quot;</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		contentType=<span class="string">&quot;text/plain&quot;</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(prefix.equals(<span class="string">&quot;xls&quot;</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		contentType=<span class="string">&quot;application/vnd.ms-excel&quot;</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(prefix.equals(<span class="string">&quot;docx&quot;</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		contentType=<span class="string">&quot;application/vnd.openxmlformats-officedocument.wordprocessingml.document&quot;</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(prefix.equals(<span class="string">&quot;ppt&quot;</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		contentType=<span class="string">&quot;application/vnd.ms-powerpoint&quot;</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(prefix.equals(<span class="string">&quot;pptx&quot;</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		contentType=<span class="string">&quot;application/vnd.openxmlformats-officedocument.presentationml.presentation&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		contentType=<span class="string">&quot;othertype&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> contentType;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上传文件</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">uploadFile</span><span class="params">(<span class="meta">@RequestParam(&quot;files&quot;)</span> MultipartFile[] files)</span> <span class="keyword">throws</span> IOException, SolrServerException &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">path</span> <span class="operator">=</span> <span class="string">&quot;/home/xyy/Desktop/&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (files != <span class="literal">null</span> &amp;&amp; files.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">//循环获取file数组中得文件</span></span><br><span class="line">        <span class="keyword">for</span> (MultipartFile file : files) &#123;</span><br><span class="line">            <span class="keyword">if</span> (file != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> file.getOriginalFilename();</span><br><span class="line">                path = path + fileName;</span><br><span class="line">                <span class="type">File</span> <span class="variable">newFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(path);</span><br><span class="line">                <span class="comment">//上传</span></span><br><span class="line">                file.transferTo(newFile);</span><br><span class="line">                addFile(path, fileName);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">uploadFile</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> IOException, SolrServerException &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">path</span> <span class="operator">=</span> <span class="string">&quot;/home/xyy/Desktop/&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将当前上下文初始化给  CommonsMutipartResolver （多部分解析器）</span></span><br><span class="line">    <span class="type">CommonsMultipartResolver</span> <span class="variable">multipartResolver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CommonsMultipartResolver</span>(request.getSession().getServletContext());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查form中是否有enctype=&quot;multipart/form-data&quot;</span></span><br><span class="line">    <span class="keyword">if</span> (multipartResolver.isMultipart(request)) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将request变成多部分request</span></span><br><span class="line">        <span class="type">MultipartHttpServletRequest</span> <span class="variable">multiRequest</span> <span class="operator">=</span> (MultipartHttpServletRequest) request;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取multiRequest 中所有的文件名</span></span><br><span class="line">        <span class="type">Iterator</span> <span class="variable">iter</span> <span class="operator">=</span> multiRequest.getFileNames();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">            <span class="comment">// 一次遍历所有文件</span></span><br><span class="line">            <span class="type">MultipartFile</span> <span class="variable">file</span> <span class="operator">=</span> multiRequest.getFile(iter.next().toString());</span><br><span class="line">            <span class="keyword">if</span> (file != <span class="literal">null</span>) &#123;</span><br><span class="line">                fileName = file.getOriginalFilename();</span><br><span class="line">                path = <span class="string">&quot;/home/xyy/Desktop/&quot;</span> + fileName;</span><br><span class="line">                <span class="type">File</span> <span class="variable">newFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(path);</span><br><span class="line">                <span class="comment">//上传</span></span><br><span class="line">                file.transferTo(newFile);</span><br><span class="line">                addFile(path, fileName);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Solr</tag>
+        <tag>全文检索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>防火墙拦截PUT和DELETE方法</title>
+    <url>/2023/06/12/%E9%98%B2%E7%81%AB%E5%A2%99%E6%8B%A6%E6%88%AAPUT%E5%92%8CDELETE%E8%AF%B7%E6%B1%82%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>防火墙设置，只允许POST和GET请求通过，不允许PUT和DELETE请求。</p>
+<ol>
+<li>前端必须改代码，这个无法绕过，所有的PUT&#x2F;DELETE请求，都要求改成POST，并携带特殊Header：<br>所有的PUT请求，要携带Header：X-HTTP-Method-Override: PUT<br>所有的DELETE请求，要携带Header：X-HTTP-Method-Override: DELETE</li>
+<li>nginx根据Header：X-HTTP-Method-Override，转换请求method</li>
+</ol>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">if</span> (<span class="variable">$http_X_HTTP_Method_Override</span> <span class="regexp">~* &#x27;DELETE&#x27;)</span> &#123;</span><br><span class="line">	<span class="attribute">set</span> <span class="variable">$method</span> DELETE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="attribute">if</span> (<span class="variable">$http_X_HTTP_Method_Override</span> <span class="regexp">~* &#x27;PUT&#x27;)</span> &#123;</span><br><span class="line">	<span class="attribute">set</span> <span class="variable">$method</span> PUT;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="attribute">proxy_method</span> <span class="variable">$method</span>;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+        <tag>web</tag>
+        <tag>防火墙</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows搭建私人网盘</title>
+    <url>/2020/04/16/Windows%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/</url>
+    <content><![CDATA[<h2 id="所需安装包"><a href="#所需安装包" class="headerlink" title="所需安装包"></a>所需安装包</h2><ol>
+<li>下载<a href="https://kodcloud.com/download/">可道云</a></li>
+<li>根据自己系统需求部署环境<a href="https://www.upupw.net/Nginx/">UPUPW</a></li>
+</ol>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><ol>
+<li><p>安装UPUPW运行环境</p>
+<ul>
+<li><p>解压缩下载的 UPUPW_NPX.X_XXXX.7z 文件（位置随意）</p>
+</li>
+<li><p>然后运行主程序 upupw.exe</p>
+</li>
+<li><p>在运行的cmd窗口中输入 s1 回车后启动</p>
+<p>  <img src="/images/Windows%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/cmd.png" alt="CMD 界面"></p>
+</li>
+<li><p>浏览器访问 <a href="http://127.0.0.1/">127.0.0.1</a>，如果显示探针页面则表示启动成功。</p>
+<p>  <img src="/images/Windows%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/tanzhen.png" alt="探针页面"></p>
+</li>
+<li><p>可根据自己需求自定 UPUPW 一些服务， 也可直接使用。</p>
+</li>
+</ul>
+</li>
+<li><p>安装可道云</p>
+<ul>
+<li><p>进入 UPUPW_NPX.X\htdocs 目录，删除所有文件</p>
+</li>
+<li><p>然后将下载的可道云 kodexplorerX.X.zip 解压到 htdocs 目录</p>
+  
+
+<p>  <img src="/images/Windows%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/htdocs.png" alt="htdocs目录"></p>
+</li>
+<li><p>浏览器访问 <a href="http://127.0.0.1/">127.0.0.1</a>，进入可道云界面，首次进入需要设置 admin 用户的密码</p>
+</li>
+</ul>
+ 
+<p> <img src="/images/Windows%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/kodexplorer.png" alt="可道云界面"></p>
+</li>
+</ol>
+<p>局域网的其他设备可通过访问部署机器的局域网地址（192.168.X.X）进入</p>
+]]></content>
+      <categories>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>网盘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Maven安装与配置</title>
+    <url>/2020/04/30/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="下载Maven安装包"><a href="#下载Maven安装包" class="headerlink" title="下载Maven安装包"></a>下载Maven安装包</h1><ol>
+<li>访问<a href="http://maven.apache.org/download.cgi">Maven官网</a>，官网如果打开速度太慢可访问 <a href="https://archive.apache.org/dist/maven/maven-3/">备用网址</a></li>
+<li>Windows下载版本为 Binary zip archive 的二进制包，例如： <a href="https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip"> apache-maven-3.6.3-bin.zip</a> </li>
+<li>Linux下载版本为 Binary tar.gz archive 的二进制包，例如：<a href="https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz">apache-maven-3.6.3-bin.tar.gz</a></li>
+</ol>
+<h1 id="Windows-下安装Maven"><a href="#Windows-下安装Maven" class="headerlink" title="Windows 下安装Maven"></a>Windows 下安装Maven</h1><ol>
+<li><p>解压 apache-maven-3.6.3-bin.zip 到软件安装目录</p>
+<p> 例如：直接解压到D盘，可得到 D:\apache-maven-3.6.3\ 为安装目录</p>
+</li>
+<li><p>添加环境变量</p>
+<ul>
+<li><p>M2_HOME：</p>
+<p>  变量：M2_HOME</p>
+<p>  值（替换为自己的安装目录）：D:\apache-maven-3.6.3\</p>
+</li>
+<li><p>MAVEN_HOME：</p>
+<p>  变量：MAVEN_HOME</p>
+<p>  值（替换为自己的安装目录）：D:\apache-maven-3.6.3\</p>
+</li>
+<li><p>在Path里面添加：</p>
+<p>  %MAVEN_HOME%\bin</p>
+</li>
+</ul>
+</li>
+<li><p>验证是否安装成功</p>
+<p> 在CMD里面输入mvn -version，如果有返回信息则表示安装成功</p>
+<p> <img src="/images/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/windows.png" alt="Windows 验证信息"></p>
+</li>
+</ol>
+<h1 id="Linux下安装Maven"><a href="#Linux下安装Maven" class="headerlink" title="Linux下安装Maven"></a>Linux下安装Maven</h1><ol>
+<li><p>解压 apache-maven-3.6.3-bin.tar.gz 到软件安装目录</p>
+<p> 例如：解压到 &#x2F;usr&#x2F;local&#x2F; 文件夹下面</p>
+ <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">tar</span> -zxvf apache-maven-<span class="number">3</span>.<span class="number">6</span>.<span class="number">3</span>-bin.tar.gz -C /usr/local</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加环境变量</p>
+<p> 在 .bashrc 中添加，请替换成自己的安装目录</p>
+ <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> <span class="attribute">MAVEN_HOME</span>=/usr/local/apache-maven-3.6.3</span><br></pre></td></tr></table></figure>
+
+<p> 配置好后记得重新加载一下配置文件</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证是否安装成功</p>
+<p> 在终端中输入 mvn -version，如果有以下返回信息则表示安装成功</p>
+<p> <img src="/images/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/linux.png" alt="Linux 验证信息"></p>
+</li>
+</ol>
+<h1 id="配置Maven"><a href="#配置Maven" class="headerlink" title="配置Maven"></a>配置Maven</h1><p>打开 MAVEN_HOME\conf\setting.xml 文件</p>
+<ol>
+<li><p>配置本地资源库</p>
+<ol>
+<li><p>在 Maven 安装目录新建文件夹 repository，如果已存在可跳过</p>
+</li>
+<li><p>然后在 setting.xml 文件中搜索 localRepository，在注释外面添加以下内容</p>
+<p> Windows</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\apache-maven-3.6.3\repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> Linux</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>/usr/local/apache-maven-3.6.1/repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>配置阿里源</p>
+<ol>
+<li><p>在 setting.xml 文件中搜索 mirrors，在 mirrors 标签中添加以下内容</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云公共仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h1 id="配置-IDEA-中的Maven"><a href="#配置-IDEA-中的Maven" class="headerlink" title="配置 IDEA 中的Maven"></a>配置 IDEA 中的Maven</h1><ol>
+<li><p>打开 IDEA 的 Settings，按下面路径找到Maven配置界面</p>
+<p> Settings &gt; Build, Execution, Deployment &gt; Build Tools  &gt; Maven</p>
+</li>
+<li><p>将以下内容根据自己安装的 Maven 进行设置</p>
+<p> <img src="/images/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/idea.png" alt="IDEA 中的配置"></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mysql 按照成绩分段统计</title>
+    <url>/2023/06/24/Mysql-%E6%8C%89%E7%85%A7%E6%88%90%E7%BB%A9%E5%88%86%E6%AE%B5%E7%BB%9F%E8%AE%A1/</url>
+    <content><![CDATA[<p>有一张成绩表，主要有学号，成绩<code>course_score</code>字段，学生成绩在[0, 100]的区间中，现在按10分为一个分数段，统计各个分数段中学生数量的分布情况。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    <span class="built_in">FLOOR</span>( course_score DIV <span class="number">10</span> ) <span class="keyword">AS</span> score_level,</span><br><span class="line">    <span class="built_in">count</span>( <span class="number">1</span> ) <span class="keyword">as</span> level_count</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    course_score </span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    semester_id <span class="operator">=</span> <span class="string">&#x27;1514584967433203714&#x27;</span> </span><br><span class="line">    <span class="keyword">AND</span> course_no <span class="operator">=</span> <span class="string">&#x27;201912500203&#x27;</span> </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">    <span class="built_in">FLOOR</span>(course_score DIV <span class="number">10</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>默认分类</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows11家庭版启用Hyper-V</title>
+    <url>/2023/06/26/Windows11%E5%AE%B6%E5%BA%AD%E7%89%88%E5%90%AF%E7%94%A8Hyper-V/</url>
+    <content><![CDATA[<p>window11家庭版启用或关闭Windows功能发现无法找到hyper-v功能选项，其实这是window自动隐藏该功能</p>
+<p>在Win11搜索框，PowerShell 输入 systeminfo 命令</p>
+<p>能够看到出现了很多处理器的信息，最末尾有个 Hyper-V 要求，如果四个全为 “是”，则表示支持 Hyper-V 功能</p>
+<p>桌面新建一个记事本文件，将它的后缀改成cmd或bat，复制下面的代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">pushd</span> <span class="string">&quot;%~dp0&quot;</span></span><br><span class="line"><span class="built_in">dir</span> /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum &gt;hyper-v.txt</span><br><span class="line"><span class="keyword">for</span> /f %%i <span class="keyword">in</span> (<span class="string">&#x27;findstr /i . hyper-v.txt 2^&gt;nul&#x27;</span>) <span class="keyword">do</span> dism /online /norestart /add-package:<span class="string">&quot;%SystemRoot%\servicing\Packages\%%i&quot;</span></span><br><span class="line">del hyper-v.txt</span><br><span class="line">Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL</span><br></pre></td></tr></table></figure>
+
+<p>然后，右键选择：以管理员身份运行。代码执行结束后，重启电脑就可以了。</p>
+]]></content>
+      <categories>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+</search>
