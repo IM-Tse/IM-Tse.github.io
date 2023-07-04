@@ -49,15 +49,89 @@
       </tags>
   </entry>
   <entry>
-    <title>按~键无反应的问题</title>
-    <url>/2023/06/12/%E6%8C%89-%E9%94%AE%E6%97%A0%E5%8F%8D%E5%BA%94%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>Snipaste或者其他软件设置了快捷键</p>
+    <title>Maven安装与配置</title>
+    <url>/2020/04/30/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="下载Maven安装包"><a href="#下载Maven安装包" class="headerlink" title="下载Maven安装包"></a>下载Maven安装包</h1><ol>
+<li>访问<a href="http://maven.apache.org/download.cgi">Maven官网</a>，官网如果打开速度太慢可访问 <a href="https://archive.apache.org/dist/maven/maven-3/">备用网址</a></li>
+<li>Windows下载版本为 Binary zip archive 的二进制包，例如： <a href="https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip"> apache-maven-3.6.3-bin.zip</a> </li>
+<li>Linux下载版本为 Binary tar.gz archive 的二进制包，例如：<a href="https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz">apache-maven-3.6.3-bin.tar.gz</a></li>
+</ol>
+<h1 id="Windows-下安装Maven"><a href="#Windows-下安装Maven" class="headerlink" title="Windows 下安装Maven"></a>Windows 下安装Maven</h1><ol>
+<li><p>解压 apache-maven-3.6.3-bin.zip 到软件安装目录</p>
+<p> 例如：直接解压到D盘，可得到 D:\apache-maven-3.6.3\ 为安装目录</p>
+</li>
+<li><p>添加环境变量</p>
+<ul>
+<li><p>M2_HOME：</p>
+<p>  变量：M2_HOME</p>
+<p>  值（替换为自己的安装目录）：D:\apache-maven-3.6.3\</p>
+</li>
+<li><p>MAVEN_HOME：</p>
+<p>  变量：MAVEN_HOME</p>
+<p>  值（替换为自己的安装目录）：D:\apache-maven-3.6.3\</p>
+</li>
+<li><p>在Path里面添加：</p>
+<p>  %MAVEN_HOME%\bin</p>
+</li>
+</ul>
+</li>
+<li><p>验证是否安装成功</p>
+<p> 在CMD里面输入mvn -version，如果有返回信息则表示安装成功</p>
+<p> <img src="/images/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/windows.png" alt="Windows 验证信息"></p>
+</li>
+</ol>
+<h1 id="Linux下安装Maven"><a href="#Linux下安装Maven" class="headerlink" title="Linux下安装Maven"></a>Linux下安装Maven</h1><ol>
+<li><p>解压 apache-maven-3.6.3-bin.tar.gz 到软件安装目录</p>
+<p> 例如：解压到 &#x2F;usr&#x2F;local&#x2F; 文件夹下面</p>
+ <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">tar</span> -zxvf apache-maven-<span class="number">3</span>.<span class="number">6</span>.<span class="number">3</span>-bin.tar.gz -C /usr/local</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加环境变量</p>
+<p> 在 .bashrc 中添加，请替换成自己的安装目录</p>
+ <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> <span class="attribute">MAVEN_HOME</span>=/usr/local/apache-maven-3.6.3</span><br></pre></td></tr></table></figure>
+
+<p> 配置好后记得重新加载一下配置文件</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证是否安装成功</p>
+<p> 在终端中输入 mvn -version，如果有以下返回信息则表示安装成功</p>
+<p> <img src="/images/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/linux.png" alt="Linux 验证信息"></p>
+</li>
+</ol>
+<h1 id="配置Maven"><a href="#配置Maven" class="headerlink" title="配置Maven"></a>配置Maven</h1><p>打开 MAVEN_HOME\conf\setting.xml 文件</p>
+<ol>
+<li><p>配置本地资源库</p>
+<ol>
+<li><p>在 Maven 安装目录新建文件夹 repository，如果已存在可跳过</p>
+</li>
+<li><p>然后在 setting.xml 文件中搜索 localRepository，在注释外面添加以下内容</p>
+<p> Windows</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\apache-maven-3.6.3\repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> Linux</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>/usr/local/apache-maven-3.6.1/repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>配置阿里源</p>
+<ol>
+<li><p>在 setting.xml 文件中搜索 mirrors，在 mirrors 标签中添加以下内容</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云公共仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h1 id="配置-IDEA-中的Maven"><a href="#配置-IDEA-中的Maven" class="headerlink" title="配置 IDEA 中的Maven"></a>配置 IDEA 中的Maven</h1><ol>
+<li><p>打开 IDEA 的 Settings，按下面路径找到Maven配置界面</p>
+<p> Settings &gt; Build, Execution, Deployment &gt; Build Tools  &gt; Maven</p>
+</li>
+<li><p>将以下内容根据自己安装的 Maven 进行设置</p>
+<p> <img src="/images/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/idea.png" alt="IDEA 中的配置"></p>
+</li>
+</ol>
 ]]></content>
       <categories>
-        <category>Windows</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>Windows</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -155,23 +229,15 @@
       </tags>
   </entry>
   <entry>
-    <title>防火墙拦截PUT和DELETE方法</title>
-    <url>/2023/06/12/%E9%98%B2%E7%81%AB%E5%A2%99%E6%8B%A6%E6%88%AAPUT%E5%92%8CDELETE%E8%AF%B7%E6%B1%82%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>防火墙设置，只允许POST和GET请求通过，不允许PUT和DELETE请求。</p>
-<ol>
-<li>前端必须改代码，这个无法绕过，所有的PUT&#x2F;DELETE请求，都要求改成POST，并携带特殊Header：<br>所有的PUT请求，要携带Header：X-HTTP-Method-Override: PUT<br>所有的DELETE请求，要携带Header：X-HTTP-Method-Override: DELETE</li>
-<li>nginx根据Header：X-HTTP-Method-Override，转换请求method</li>
-</ol>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">if</span> (<span class="variable">$http_X_HTTP_Method_Override</span> <span class="regexp">~* &#x27;DELETE&#x27;)</span> &#123;</span><br><span class="line">	<span class="attribute">set</span> <span class="variable">$method</span> DELETE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="attribute">if</span> (<span class="variable">$http_X_HTTP_Method_Override</span> <span class="regexp">~* &#x27;PUT&#x27;)</span> &#123;</span><br><span class="line">	<span class="attribute">set</span> <span class="variable">$method</span> PUT;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="attribute">proxy_method</span> <span class="variable">$method</span>;</span><br></pre></td></tr></table></figure>
-
-]]></content>
+    <title>Mysql 按照成绩分段统计</title>
+    <url>/2023/06/24/Mysql-%E6%8C%89%E7%85%A7%E6%88%90%E7%BB%A9%E5%88%86%E6%AE%B5%E7%BB%9F%E8%AE%A1/</url>
+    <content><![CDATA[<p>有一张成绩表，主要有学号，成绩<code>course_score</code>字段，学生成绩在[0, 100]的区间中，现在按10分为一个分数段，统计各个分数段中学生数量的分布情况。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    <span class="built_in">FLOOR</span>( course_score DIV <span class="number">10</span> ) <span class="keyword">AS</span> score_level,</span><br><span class="line">    <span class="built_in">count</span>( <span class="number">1</span> ) <span class="keyword">as</span> level_count</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    course_score </span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    semester_id <span class="operator">=</span> <span class="string">&#x27;1514584967433203714&#x27;</span> </span><br><span class="line">    <span class="keyword">AND</span> course_no <span class="operator">=</span> <span class="string">&#x27;201912500203&#x27;</span> </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">    <span class="built_in">FLOOR</span>(course_score DIV <span class="number">10</span>)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Web</category>
+        <category>Mysql</category>
       </categories>
       <tags>
-        <tag>nginx</tag>
-        <tag>web</tag>
-        <tag>防火墙</tag>
+        <tag>Mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -225,104 +291,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Maven安装与配置</title>
-    <url>/2020/04/30/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="下载Maven安装包"><a href="#下载Maven安装包" class="headerlink" title="下载Maven安装包"></a>下载Maven安装包</h1><ol>
-<li>访问<a href="http://maven.apache.org/download.cgi">Maven官网</a>，官网如果打开速度太慢可访问 <a href="https://archive.apache.org/dist/maven/maven-3/">备用网址</a></li>
-<li>Windows下载版本为 Binary zip archive 的二进制包，例如： <a href="https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip"> apache-maven-3.6.3-bin.zip</a> </li>
-<li>Linux下载版本为 Binary tar.gz archive 的二进制包，例如：<a href="https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz">apache-maven-3.6.3-bin.tar.gz</a></li>
-</ol>
-<h1 id="Windows-下安装Maven"><a href="#Windows-下安装Maven" class="headerlink" title="Windows 下安装Maven"></a>Windows 下安装Maven</h1><ol>
-<li><p>解压 apache-maven-3.6.3-bin.zip 到软件安装目录</p>
-<p> 例如：直接解压到D盘，可得到 D:\apache-maven-3.6.3\ 为安装目录</p>
-</li>
-<li><p>添加环境变量</p>
-<ul>
-<li><p>M2_HOME：</p>
-<p>  变量：M2_HOME</p>
-<p>  值（替换为自己的安装目录）：D:\apache-maven-3.6.3\</p>
-</li>
-<li><p>MAVEN_HOME：</p>
-<p>  变量：MAVEN_HOME</p>
-<p>  值（替换为自己的安装目录）：D:\apache-maven-3.6.3\</p>
-</li>
-<li><p>在Path里面添加：</p>
-<p>  %MAVEN_HOME%\bin</p>
-</li>
-</ul>
-</li>
-<li><p>验证是否安装成功</p>
-<p> 在CMD里面输入mvn -version，如果有返回信息则表示安装成功</p>
-<p> <img src="/images/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/windows.png" alt="Windows 验证信息"></p>
-</li>
-</ol>
-<h1 id="Linux下安装Maven"><a href="#Linux下安装Maven" class="headerlink" title="Linux下安装Maven"></a>Linux下安装Maven</h1><ol>
-<li><p>解压 apache-maven-3.6.3-bin.tar.gz 到软件安装目录</p>
-<p> 例如：解压到 &#x2F;usr&#x2F;local&#x2F; 文件夹下面</p>
- <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">tar</span> -zxvf apache-maven-<span class="number">3</span>.<span class="number">6</span>.<span class="number">3</span>-bin.tar.gz -C /usr/local</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加环境变量</p>
-<p> 在 .bashrc 中添加，请替换成自己的安装目录</p>
- <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> <span class="attribute">MAVEN_HOME</span>=/usr/local/apache-maven-3.6.3</span><br></pre></td></tr></table></figure>
-
-<p> 配置好后记得重新加载一下配置文件</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>验证是否安装成功</p>
-<p> 在终端中输入 mvn -version，如果有以下返回信息则表示安装成功</p>
-<p> <img src="/images/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/linux.png" alt="Linux 验证信息"></p>
-</li>
-</ol>
-<h1 id="配置Maven"><a href="#配置Maven" class="headerlink" title="配置Maven"></a>配置Maven</h1><p>打开 MAVEN_HOME\conf\setting.xml 文件</p>
-<ol>
-<li><p>配置本地资源库</p>
-<ol>
-<li><p>在 Maven 安装目录新建文件夹 repository，如果已存在可跳过</p>
-</li>
-<li><p>然后在 setting.xml 文件中搜索 localRepository，在注释外面添加以下内容</p>
-<p> Windows</p>
- <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\apache-maven-3.6.3\repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p> Linux</p>
- <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>/usr/local/apache-maven-3.6.1/repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>配置阿里源</p>
-<ol>
-<li><p>在 setting.xml 文件中搜索 mirrors，在 mirrors 标签中添加以下内容</p>
- <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云公共仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-</ol>
-<h1 id="配置-IDEA-中的Maven"><a href="#配置-IDEA-中的Maven" class="headerlink" title="配置 IDEA 中的Maven"></a>配置 IDEA 中的Maven</h1><ol>
-<li><p>打开 IDEA 的 Settings，按下面路径找到Maven配置界面</p>
-<p> Settings &gt; Build, Execution, Deployment &gt; Build Tools  &gt; Maven</p>
-</li>
-<li><p>将以下内容根据自己安装的 Maven 进行设置</p>
-<p> <img src="/images/Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/idea.png" alt="IDEA 中的配置"></p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mysql 按照成绩分段统计</title>
-    <url>/2023/06/24/Mysql-%E6%8C%89%E7%85%A7%E6%88%90%E7%BB%A9%E5%88%86%E6%AE%B5%E7%BB%9F%E8%AE%A1/</url>
-    <content><![CDATA[<p>有一张成绩表，主要有学号，成绩<code>course_score</code>字段，学生成绩在[0, 100]的区间中，现在按10分为一个分数段，统计各个分数段中学生数量的分布情况。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    <span class="built_in">FLOOR</span>( course_score DIV <span class="number">10</span> ) <span class="keyword">AS</span> score_level,</span><br><span class="line">    <span class="built_in">count</span>( <span class="number">1</span> ) <span class="keyword">as</span> level_count</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    course_score </span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    semester_id <span class="operator">=</span> <span class="string">&#x27;1514584967433203714&#x27;</span> </span><br><span class="line">    <span class="keyword">AND</span> course_no <span class="operator">=</span> <span class="string">&#x27;201912500203&#x27;</span> </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">    <span class="built_in">FLOOR</span>(course_score DIV <span class="number">10</span>)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>默认分类</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows11家庭版启用Hyper-V</title>
     <url>/2023/06/26/Windows11%E5%AE%B6%E5%BA%AD%E7%89%88%E5%90%AF%E7%94%A8Hyper-V/</url>
     <content><![CDATA[<p>window11家庭版启用或关闭Windows功能发现无法找到hyper-v功能选项，其实这是window自动隐藏该功能</p>
@@ -332,6 +300,38 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">pushd</span> <span class="string">&quot;%~dp0&quot;</span></span><br><span class="line"><span class="built_in">dir</span> /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum &gt;hyper-v.txt</span><br><span class="line"><span class="keyword">for</span> /f %%i <span class="keyword">in</span> (<span class="string">&#x27;findstr /i . hyper-v.txt 2^&gt;nul&#x27;</span>) <span class="keyword">do</span> dism /online /norestart /add-package:<span class="string">&quot;%SystemRoot%\servicing\Packages\%%i&quot;</span></span><br><span class="line">del hyper-v.txt</span><br><span class="line">Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL</span><br></pre></td></tr></table></figure>
 
 <p>然后，右键选择：以管理员身份运行。代码执行结束后，重启电脑就可以了。</p>
+]]></content>
+      <categories>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>防火墙拦截PUT和DELETE方法</title>
+    <url>/2023/06/12/%E9%98%B2%E7%81%AB%E5%A2%99%E6%8B%A6%E6%88%AAPUT%E5%92%8CDELETE%E8%AF%B7%E6%B1%82%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>防火墙设置，只允许POST和GET请求通过，不允许PUT和DELETE请求。</p>
+<ol>
+<li>前端必须改代码，这个无法绕过，所有的PUT&#x2F;DELETE请求，都要求改成POST，并携带特殊Header：<br>所有的PUT请求，要携带Header：X-HTTP-Method-Override: PUT<br>所有的DELETE请求，要携带Header：X-HTTP-Method-Override: DELETE</li>
+<li>nginx根据Header：X-HTTP-Method-Override，转换请求method</li>
+</ol>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">if</span> (<span class="variable">$http_X_HTTP_Method_Override</span> <span class="regexp">~* &#x27;DELETE&#x27;)</span> &#123;</span><br><span class="line">	<span class="attribute">set</span> <span class="variable">$method</span> DELETE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="attribute">if</span> (<span class="variable">$http_X_HTTP_Method_Override</span> <span class="regexp">~* &#x27;PUT&#x27;)</span> &#123;</span><br><span class="line">	<span class="attribute">set</span> <span class="variable">$method</span> PUT;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="attribute">proxy_method</span> <span class="variable">$method</span>;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+        <tag>web</tag>
+        <tag>防火墙</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>按~键无反应的问题</title>
+    <url>/2023/06/12/%E6%8C%89-%E9%94%AE%E6%97%A0%E5%8F%8D%E5%BA%94%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>Snipaste或者其他软件设置了快捷键</p>
 ]]></content>
       <categories>
         <category>Windows</category>
